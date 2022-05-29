@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+    <node name="ros_juliet_node" pkg="ros_juliet" type="ros_juliet_node" output="screen">
+        <rosparam command="load" file="$(dirname)/../../ros_juliet/config/juliet.yaml" />
+    </node>
+    <node name="ros_romeo_node"  pkg="ros_romeo"  type="ros_romeo_node"  output="screen">
+            <rosparam command="load" file="$(dirname)/../../ros_romeo/config/romeo.yaml" />
+    </node>
+</launch>
