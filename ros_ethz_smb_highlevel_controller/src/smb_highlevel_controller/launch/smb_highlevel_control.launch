@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+ <arg name="laser_enabled"      value="true"/>
+
+  <include file="$(find smb_gazebo)/launch/smb_gazebo.launch">
+   <arg name="laser_enabled"       value="$(arg laser_enabled)"/>
+  </include>
+  
+  <node name="smb_highlevel_controller" pkg="smb_highlevel_controller" type="smb_highlevel_controller" output="screen">
+    <rosparam command="load" file="$(find smb_highlevel_controller)/config/smb_control.yaml"/>
+  </node>
+  
+</launch>
+
+
