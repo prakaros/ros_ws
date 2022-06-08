@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<launch>
+
+    <node name="turtle1" pkg="turtlesim" type="turtlesim_node" ns="sim1" output="screen" />
+    <node name="turtle2" pkg="turtlesim" type="turtlesim_node" ns="sim2" output="screen" />
+    
+     <node name="turtle1_teleop" pkg="turtlesim" type="turtle_teleop_key" ns="sim1" output="screen" />
+     
+    <node name="turtle1_br" pkg="turtle_tf2_broadcaster" type="turtle_tf2_broadcaster_node" args="turtle1" output="screen">
+        <remap  from="/turtle1_br/turtle1/pose" to="/sim1/turtle1/pose"/>
+    </node>
+    
+    <node name="turtle2_br" pkg="turtle_tf2_broadcaster" type="turtle_tf2_broadcaster_node" args="turtle2" output="screen">
+        <remap  from="/turtle2_br/turtle1/pose" to="/sim2/turtle1/pose"/>
+    </node>
+    
+    <node name="turtles_listener" pkg="turtle_tf2_listener" type="turtle_tf2_listener_node" output="screen" >
+            <remap from="/turtles_listener/turtle1/cmd_vel" to="/sim2/turtle1/cmd_vel" />
+    </node>
+
+</launch>
+
