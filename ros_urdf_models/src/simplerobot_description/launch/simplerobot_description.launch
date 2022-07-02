@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+    <arg name="gui" default="true" />
+    <arg name="urdf_file" default="$(find urdf_tutorial)/urdf/ros_tree_robot.urdf"/>
+    
+    <param name="robot_description" command="$(find xacro)/xacro $(arg urdf_file)" />
+      
+    <node name="simplerobot_description" pkg="simplerobot_description" type="simplerobot_description_node" args="$(arg urdf_file)" output="screen" />
+    
+    <node if="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+    <node unless="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    
+    <node name="rviz" pkg="rviz" type="rviz" />
+    
+</launch>
